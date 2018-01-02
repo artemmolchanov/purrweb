@@ -1,0 +1,169 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Purrweb API",
+    "contact": {
+      "name": "Molchanov",
+      "email": "molchanov.artem.1994@gmail.com"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/",
+  "paths": {
+    "/api/author/{id}": {
+      "get": {
+        "summary": "Get article by author",
+        "tags": ["Author"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article",
+            "schema": {
+              "$ref": "#/definitions/article"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/article/{id}": {
+      "get": {
+        "summary": "Get article info",
+        "tags": ["Article"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article info",
+            "schema": {
+              "$ref": "#/definitions/article"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/category/{category}": {
+      "get": {
+        "summary": "Get article by category",
+        "tags": [
+          "Category"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/article"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/tag/{tag}": {
+      "get": {
+        "summary": "Get articles by tag",
+        "tags": [
+          "Tag"
+        ],
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/article"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/today": {
+      "get": {
+        "summary": "Get articles for today",
+        "tags": ["Article"],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/article"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "article": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": "1"
+        },
+        "title": {
+          "type": "string",
+          "example": "Статья"
+        },
+        "short_body": {
+          "type": "string",
+          "example": "Сокращенный текст"
+        },
+        "body": {
+          "type": "string",
+          "example": "Полный текст статьи"
+        },
+        "author_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "category_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "date":{
+          "type": "date",
+          "example": "2018-01-01"
+        }
+      }
+    }
+  }
+}
