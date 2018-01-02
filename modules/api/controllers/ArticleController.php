@@ -26,11 +26,17 @@ class ArticleController extends Controller
 
     /**
      * @return array|\yii\db\ActiveRecord[]
+     * @throws NotFoundHttpException
      */
     public function actionGetArticlesForToday()
     {
         $date = date("Y-m-d");
+        $article = Article::find()->where(['date' => $date])->all();
 
-        return Article::find()->where(['date' => $date])->all();
+        if ($article == null) {
+            throw new NotFoundHttpException('Article does not exist');
+        }
+
+        return $article;
     }
 }
